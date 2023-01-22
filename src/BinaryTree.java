@@ -1,3 +1,5 @@
+import com.sun.source.tree.Tree;
+
 import java.util.IllegalFormatCodePointException;
 
 public class BinaryTree {
@@ -132,5 +134,38 @@ public class BinaryTree {
     private boolean isLeaf(Node root) {
         return root.leftChild == null && root.rightChild == null;
     }
+
+    public boolean equals(BinaryTree other) {
+        if (other == null || root == null) return false;
+        return equals(root, other.root);
+    }
+
+    private boolean equals(Node node, Node anotherNode) {
+        if (node == null && anotherNode == null) return false;
+        if (node != null && anotherNode != null) {
+            return node.value == anotherNode.value
+                    && equals(node.leftChild, anotherNode.leftChild)
+                    && equals(node.rightChild, anotherNode.rightChild);
+        }
+        return false;
+    }
+
+    public void swapRoot() {
+        Node temp = root.leftChild;
+        root.leftChild = root.rightChild;
+        root.rightChild = temp;
+    }
+
+    public boolean isBinarySearchTree() {
+        return isBinarySearchTree(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
+    }
+
+    private boolean isBinarySearchTree(Node node, int min, int max) {
+        if (node == null) return true;
+        if (node.value < min || node.value > max) return false;
+        return isBinarySearchTree(node.leftChild, min, node.value - 1)
+                && isBinarySearchTree(node.rightChild, node.value + 1, max);
+    }
+
 
 }

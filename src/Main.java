@@ -1,3 +1,5 @@
+import java.sql.SQLOutput;
+
 public class Main {
     public static void main(String[] args) {
         BinaryTree tree = new BinaryTree();
@@ -6,11 +8,9 @@ public class Main {
         tree.insert(12);
         tree.insert(6);
         tree.insert(9);
-        tree.insert(1);
-        tree.insert(2);
-        tree.insert(3);
-        tree.insert(0);
-        System.out.println(tree.min());
+        tree.swapRoot();
+        System.out.println(tree.isBinarySearchTree());
+
     }
 
     public static int factorial(int value) {
