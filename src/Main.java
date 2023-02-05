@@ -1,4 +1,5 @@
 import java.sql.SQLOutput;
+import java.util.function.Consumer;
 
 public class Main {
     public static void main(String[] args) {
@@ -8,8 +9,9 @@ public class Main {
         tree.insert(12);
         tree.insert(6);
         tree.insert(9);
-        tree.swapRoot();
+        var list = tree.printNodesAtDistance(2);
         System.out.println(tree.isBinarySearchTree());
+        tree.traverseLevelOrder();
 
     }
 

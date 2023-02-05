@@ -1,5 +1,6 @@
 import com.sun.source.tree.Tree;
 
+import java.util.ArrayList;
 import java.util.IllegalFormatCodePointException;
 
 public class BinaryTree {
@@ -167,5 +168,28 @@ public class BinaryTree {
                 && isBinarySearchTree(node.rightChild, node.value + 1, max);
     }
 
+    public ArrayList<Integer> printNodesAtDistance(int distance) {
+        ArrayList<Integer> list = new ArrayList<>();
+        printNodesAtDistance(root, distance, list);
+        return list;
+    }
+
+    private void printNodesAtDistance(Node node, int distance, ArrayList<Integer> list) {
+        if (node == null) return;
+        if (distance == 0) {
+            list.add(node.value);
+            return;
+        }
+        printNodesAtDistance(node.leftChild, distance - 1, list);
+        printNodesAtDistance(node.rightChild, distance - 1, list);
+    }
+
+    public void traverseLevelOrder() {
+        for (int i = 0; i <= height(); i++) {
+            for (var value: printNodesAtDistance(i)) {
+                System.out.println(value);
+            }
+        }
+    }
 
 }
